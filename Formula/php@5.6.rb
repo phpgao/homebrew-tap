@@ -1,8 +1,8 @@
 class PhpAT56 < Formula
   desc "General-purpose scripting language"
   homepage "https://secure.php.net/"
-  url "https://php.net/get/php-5.6.40.tar.xz/from/this/mirror"
-  sha256 "1369a51eee3995d7fbd1c5342e5cc917760e276d561595b6052b21ace2656d1c"
+  url "https://php.net/get/php-5.6.39.tar.xz/from/this/mirror"
+  sha256 "8147576001a832ff3d03cb2980caa2d6b584a10624f87ac459fcd3948c6e4a10"
 
   bottle do
     sha256 "0f616518cdc1b20b0356ca22e7dd77a69da5c4f6354932868bd8ed3196f04872" => :mojave
@@ -125,6 +125,8 @@ class PhpAT56 < Formula
       --enable-sysvshm
       --enable-wddx
       --enable-zip
+      --enable-maintainer-zts
+      --disable-cgi
       --with-apxs2=#{Formula["httpd"].opt_bin}/apxs
       --with-bz2#{headers_path}
       --with-curl=#{Formula["curl-openssl"].opt_prefix}
@@ -403,7 +405,7 @@ class PhpAT56 < Formula
     ensure
       if pid
         Process.kill("TERM", pid)
-        Process.wait(pid)
+        Process.wait(pid) 
       end
       if fpm_pid
         Process.kill("TERM", fpm_pid)
